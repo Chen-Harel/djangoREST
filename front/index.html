@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Home Page</title>
+</head>
+
+<body>
+
+    <button onclick="allBooks()">All Books</button>
+
+    <div id="root"></div>
+
+
+    <script>
+        let res = []
+
+        const allBooks = async () => {
+            res = await fetch('http://127.0.0.1:8000/books/')
+                .then(response => response.json())
+            document.getElementById('root').innerHTML = res.map(b => `<h1>${b.Book_Name}</h1>`).join('')
+        }
+
+    </script>
+</body>
+
+</html>
