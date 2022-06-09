@@ -9,22 +9,18 @@
 </head>
 
 <body>
+    <p>Add a book from here</p>:
+    Book Name:&nbsp;&nbsp;&nbsp;<input id="bookName" required>
+    Book Author:<input id="bookAuthor">
+    <br><br>
+    <button onclick="addBook()">Add book</button>
+    <br><br><br>
 
-    <button onclick="allBooks()">All Books</button>
+    Show all books: <button onclick="allBooks()">All Books</button>
 
     <div id="root"></div>
 
-
-    <script>
-        let res = []
-
-        const allBooks = async () => {
-            res = await fetch('http://127.0.0.1:8000/books/')
-                .then(response => response.json())
-            document.getElementById('root').innerHTML = res.map(b => `<h1>${b.Book_Name}</h1>`).join('')
-        }
-
-    </script>
+    <script src="index.js"></script>
 </body>
 
 </html>
