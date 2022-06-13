@@ -7,7 +7,7 @@ const allBooks = async () => {
 }
 
 const buildGUI = () => {
-    document.getElementById('root').innerHTML = res.map(b => `<p>${b.Book_Name}<button onclick="deleteBook(${b.BookID})">Delete</button></p>`).join('')
+    document.getElementById('root').innerHTML = res.map(b => `<p>${b.Book_Name}&nbsp;&nbsp;<button onclick="deleteBook(${b.BookID})">Delete</button></p>`).join('')
 }
 
 const addBook = async () => {

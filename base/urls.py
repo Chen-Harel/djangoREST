@@ -20,5 +20,7 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('books/', views.books),
-    path('books/<id>', views.books)
+    path('books/<id>', views.books),
+    path('loans/', views.loans),
+    path('loans/<id>', views.loans)
 ]
