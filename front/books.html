@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Books Page</title>
+</head>
+<body>
+<a href="/front/index.html">Home</a>
+<a href="/front/books.html">Books</a>
+<a href="/front/loans.html">Loans</a>
+
+    <p>Add a book from here:</p>
+    Book Name:&nbsp;&nbsp;&nbsp;<input id="bookName" required>
+    Book Author:<input id="bookAuthor">
+    <br><br>
+    <button onclick="addBook()">Add book</button>
+
+<br><br>
+<div>Show all books: <button onclick="allBooks()">All Books</button></div>    
+
+<div id="root"></div>
+
+<script src="./JavaScript/index.js"></script>
+</body>
+
+</html>

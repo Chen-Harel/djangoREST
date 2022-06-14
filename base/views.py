@@ -47,12 +47,12 @@ def books(request, id=0):
     return HttpResponse ("This is the books section")
 
 @api_view(['GET', 'POST', 'DELETE', 'PUT'])
-def loans(request,id=0):
+def loans(request, userID=0, bookID=0):
     if request.method=='GET':
-        if int(id)>0:
-            if int(id)>Loan.objects.count():
+        if int(userID)>0:
+            if int(userID)>Loan.objects.count():
                 return JsonResponse({'INDEX ERROR':'OUT OF RANGE'})
-            loan=Loan.objects.all()[int(id)-1]
+            loan=Loan.objects.all()[int(userID)-1]
             res=LoanSerializer().getLoan(loan)
             return JsonResponse(res,safe=False)
         else:
@@ -62,18 +62,32 @@ def loans(request,id=0):
                     'userID':loanItem.userID.id,
                     'userName':str(loanItem.userID),
                     'bookID':loanItem.bookID._id,
-                    'bookName':str(loanItem.bookID.bookName)
+                    'bookName':str(loanItem.bookID.bookName),
+                    'Loan date':loanItem.dateLoaned
                 })
             return JsonResponse(loanList, safe=False)
     if request.method=='POST':
-        user=User.objects.get(first_name=request.data['userName'])
-        book=Book.objects.get(book=request.data['bookName'])
-        Loan.objects.create(userID=user,bookName=book)
+        user=User.objects.get(username=request.data['username'])
+        book=Book.objects.get(bookName=request.data['bookName'])
+        Loan.objects.create(userID=user,bookID=book)
         return JsonResponse(request.data)
-
     if request.method=='DELETE':
-        loanDelete=Loan.objects.delete(_id=id)
+        loanDelete=Loan.objects.get(bookID_id=bookID, userID_id=userID)
         loanDelete.delete()
+        return JsonResponse({'method':'DELETE'})
+    if request.method=='PUT':
+        loanUpdate=Loan.objects.all()[int(id)-1]
+        loanUpdate.dateLoaned=request.data['dateLoaned']
+        loanUpdate.save()
+        return JsonResponse({'method':'PUT'})
+
+@api_view(['GET', 'POST', 'DELETE', 'PUT'])
+def users(request):
+    if request.method=='GET':
+        return JsonResponse({'method':'GET'})
+    if request.method=='POST':
+        return JsonResponse({'method':'POST'})
+    if request.method=='DELETE':
         return JsonResponse({'method':'DELETE'})
     if request.method=='PUT':
         return JsonResponse({'method':'PUT'})

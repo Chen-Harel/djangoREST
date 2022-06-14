@@ -29,6 +29,7 @@ class BookSerializer(serializers.ModelSerializer):
 class Loan(models.Model):
     userID=models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     bookID=models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
+    dateLoaned=models.DateField(auto_now=True, null=True)
     field=['userID', 'bookID']
     def __str__(self):
         return str(self.userID)

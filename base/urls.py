@@ -22,5 +22,6 @@ urlpatterns = [
     path('books/', views.books),
     path('books/<id>', views.books),
     path('loans/', views.loans),
-    path('loans/<id>', views.loans)
+    path('loans/<id>', views.loans),
+    path('loans/<userID>/<bookID>', views.loans)
 ]
